@@ -318,7 +318,7 @@ function BarangActivity()
             <li>
                 <div class='list d-flex align-items-center border-bottom pb-3 mt-3'>
                     <div class='wrapper w-100 ml-3 mt-2'>
-                        <p><b>$Data[Barang]</b> Telah Di Perbaharui</p>
+                        <p><b>$Data[Barang]</b> Telah Di Perbarui</p>
                     </div>
                 </div>       
             </li>    
