@@ -11,7 +11,7 @@ if (isset($_POST['tambah-barang'])) {
     $cekBarang = mysqli_query($conn, "SELECT Barang FROM barang WHERE Barang = '$Barang'");
 
     if (empty($IDBarang) || empty($Barang) || empty($IDKategori) || empty($Stok)) {
-        echo "
+        $alert = "
         <script>
         setTimeout(function() {
             Swal.fire({
@@ -26,7 +26,7 @@ if (isset($_POST['tambah-barang'])) {
         </script>
         ";
     } else if (mysqli_num_rows($cekBarang) != 0) {
-        echo "
+        $alert =  "
         <script>
         setTimeout(function() {
             Swal.fire({
@@ -41,7 +41,7 @@ if (isset($_POST['tambah-barang'])) {
         </script>
         ";
     } else if (!preg_match("/^[a-zA-Z ]*$/", $Barang)) {
-        echo "
+        $alert =  "
         <script>
         setTimeout(function() {
             Swal.fire({
@@ -56,7 +56,7 @@ if (isset($_POST['tambah-barang'])) {
         </script>
         ";
     } else if (!preg_match("/^[0-9]*$/", $Stok)) {
-        echo "
+        $alert = "
         <script>
         setTimeout(function() {
             Swal.fire({
@@ -99,7 +99,7 @@ if (isset($_POST['tambah-kategori'])) {
     $cekKategori = mysqli_query($conn, "SELECT Kategori FROM kategori WHERE Kategori = '$Kategori'");
 
     if (empty($IDKategori) || empty($Kategori)) {
-        echo "
+        $alert =  "
         <script>
         setTimeout(function() {
             Swal.fire({
@@ -114,7 +114,7 @@ if (isset($_POST['tambah-kategori'])) {
         </script>
         ";
     } else if (mysqli_num_rows($cekKategori) != 0) {
-        echo "
+        $alert = "
         <script>
         setTimeout(function() {
             Swal.fire({
@@ -129,7 +129,7 @@ if (isset($_POST['tambah-kategori'])) {
         </script>
         ";
     } else if (!preg_match("/^[a-zA-Z ]*$/", $Kategori)) {
-        echo "
+        $alert = "
         <script>
         setTimeout(function() {
             Swal.fire({
@@ -145,7 +145,7 @@ if (isset($_POST['tambah-kategori'])) {
         ";
     } else {
         mysqli_query($conn, "INSERT INTO kategori (IDKategori, Kategori) VALUES ('$IDKategori', '$Kategori')");
-        echo "
+        $alert = "
         <script>
         setTimeout(function() {
             Swal.fire({
@@ -175,7 +175,7 @@ if (isset($_POST['tambah-ulasan'])) {
     $Location = "../../assets/images/foto-ulasan/";
 
     if (empty($InputNama) || empty($InputUlasan)) {
-        echo "
+        $alert = "
         <script>
         setTimeout(function() {
             Swal.fire({
@@ -193,7 +193,7 @@ if (isset($_POST['tambah-ulasan'])) {
     }
 
     if (!preg_match("/^[a-zA-Z ]*$/", $InputNama)) {
-        echo "
+        $alert = "
         <script>
         setTimeout(function() {
             Swal.fire({
@@ -211,7 +211,7 @@ if (isset($_POST['tambah-ulasan'])) {
     }
 
     if ($Check === 4) {
-        echo "
+        $alert = "
         <script>
         setTimeout(function() {
             Swal.fire({
@@ -233,7 +233,7 @@ if (isset($_POST['tambah-ulasan'])) {
     $GetExt = end($GetName);
 
     if (!in_array($GetExt, $ValidExtension)) {
-        echo "
+        $alert = "
         <script>
         setTimeout(function() {
             Swal.fire({
@@ -251,7 +251,7 @@ if (isset($_POST['tambah-ulasan'])) {
     }
 
     if ($Size > 500000) {
-        echo "
+        $alert = "
         <script>
         setTimeout(function() {
             Swal.fire({
@@ -277,7 +277,7 @@ if (isset($_POST['tambah-ulasan'])) {
     $InsertData = mysqli_query($conn, "INSERT INTO ulasan(IDUlasan, Nama, Ulasan, Foto) VALUES ('$InputKode', '$InputNama' , '$InputUlasan' , '$UniqidName')");
 
     if ($InsertData) {
-        echo "
+        $alert = "
         <script>
         setTimeout(function() {
             Swal.fire({
@@ -314,7 +314,7 @@ if (isset($_POST['tambah-pegawai'])) {
     $cekNama = mysqli_query($conn, "SELECT Nama FROM pegawai WHERE Nama = '$Nama'");
 
     if (empty($Nama) || empty($Gender) || empty($Tanggal) || empty($Alamat) || empty($Telepon) || empty($IDJabatan)) {
-        echo "
+        $alert = "
         <script>
         setTimeout(function() {
             Swal.fire({
@@ -332,7 +332,7 @@ if (isset($_POST['tambah-pegawai'])) {
     }
 
     if (!preg_match("/^[a-zA-Z ]*$/", $Nama)) {
-        echo "
+        $alert = "
         <script>
         setTimeout(function() {
             Swal.fire({
@@ -350,7 +350,7 @@ if (isset($_POST['tambah-pegawai'])) {
     }
 
     if (!preg_match("/^[a-zA-Z ]*$/", $Alamat)) {
-        echo "
+        $alert = "
         <script>
         setTimeout(function() {
             Swal.fire({
@@ -368,7 +368,7 @@ if (isset($_POST['tambah-pegawai'])) {
     }
 
     if (!preg_match("/^[0-9]*$/", $Telepon)) {
-        echo "
+        $alert = "
         <script>
         setTimeout(function() {
             Swal.fire({
@@ -386,7 +386,7 @@ if (isset($_POST['tambah-pegawai'])) {
     }
 
     if (mysqli_num_rows($cekNama) != 0) {
-        echo "
+        $alert = "
         <script>
         setTimeout(function() {
             Swal.fire({
@@ -404,7 +404,7 @@ if (isset($_POST['tambah-pegawai'])) {
     }
 
     if ($SetCheck === 4) {
-        echo "
+        $alert = "
         <script>
         setTimeout(function() {
             Swal.fire({
@@ -426,7 +426,7 @@ if (isset($_POST['tambah-pegawai'])) {
     $GetExt = end($GetName);
 
     if (!in_array($GetExt, $ValidExtension)) {
-        echo "
+        $alert = "
         <script>
         setTimeout(function() {
             Swal.fire({
@@ -444,7 +444,7 @@ if (isset($_POST['tambah-pegawai'])) {
     }
 
     if ($SetSize > 500000) {
-        echo "
+        $alert = "
         <script>
         setTimeout(function() {
             Swal.fire({
@@ -471,7 +471,7 @@ if (isset($_POST['tambah-pegawai'])) {
     $InsertPegawai = mysqli_query($conn, "INSERT INTO pegawai (IDPegawai, Nama, Gender, Tanggal, Alamat, Telepon, IDJabatan, Foto) VALUES ('$IDPegawai', '$Nama', '$Gender', '$Tanggal', '$Alamat', '$Telepon', '$IDJabatan', '$UniqidName')");
 
     if ($InsertPegawai) {
-        echo "
+        $alert = "
         <script>
         setTimeout(function() {
             Swal.fire({
@@ -500,7 +500,7 @@ if (isset($_POST['tambah-akun'])) {
     $cekUsername = mysqli_query($conn, "SELECT Username FROM login WHERE Username = '$Username'");
 
     if (empty($Username) || empty($Password)) {
-        echo "
+        $alert = "
         <script>
         setTimeout(function() {
             Swal.fire({
@@ -515,7 +515,7 @@ if (isset($_POST['tambah-akun'])) {
         </script>
         ";
     } else if (mysqli_num_rows($cekUsername) != 0) {
-        echo "
+        $alert = "
         <script>
         setTimeout(function() {
             Swal.fire({
@@ -531,7 +531,7 @@ if (isset($_POST['tambah-akun'])) {
         ";
     } else {
         mysqli_query($conn, "INSERT INTO login (IDLogin, IDPegawai, Username, Password, IDLevel) VALUES ('$IDLogin', '$IDPegawai', '$Username', '$Password', '$IDLevel')");
-        echo "
+        $alert = "
         <script>
         setTimeout(function() {
             Swal.fire({

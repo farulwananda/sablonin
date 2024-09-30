@@ -166,7 +166,7 @@ CREATE TABLE `riwayat` (
   `Kategori` varchar(35) NOT NULL,
   `Stok` int(4) NOT NULL,
   `Status` varchar(20) NOT NULL,
-  `Time` date NOT NULL DEFAULT current_timestamp()
+  `Time` datetime NOT NULL DEFAULT current_timestamp()
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
 --

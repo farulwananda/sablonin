@@ -33,6 +33,12 @@
 <!-- <script src="../assets/js/jquery-3.6.0.min.js"></script> -->
 <script src="../../assets/js/dashboard.js"></script>
 <!-- End custom js for this page-->
+
+<?php
+if (isset($alert)) {
+    echo $alert;
+}
+?>
 </body>
 <!-- End Body -->
 

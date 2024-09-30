@@ -25,7 +25,7 @@ if (isset($_POST['update-pegawai'])) {
     $UniqidName .= $GetExt;
 
     if (empty($Nama) || empty($Alamat) || empty($Telepon)) {
-        echo "
+        $alert = "
         <script>
         setTimeout(function() {
             Swal.fire({
@@ -40,7 +40,7 @@ if (isset($_POST['update-pegawai'])) {
         </script>
         ";
     } else if (!preg_match("/^[a-zA-Z ]*$/", $Nama)) {
-        echo "
+        $alert = "
         <script>
         setTimeout(function() {
             Swal.fire({
@@ -55,7 +55,7 @@ if (isset($_POST['update-pegawai'])) {
         </script>
         ";
     } else if (!preg_match("/^[a-zA-Z ]*$/", $Alamat)) {
-        echo "
+        $alert = "
         <script>
         setTimeout(function() {
             Swal.fire({
@@ -70,7 +70,7 @@ if (isset($_POST['update-pegawai'])) {
         </script>
         ";
     } else if (!preg_match("/^[0-9]*$/", $Telepon)) {
-        echo "
+        $alert = "
         <script>
         setTimeout(function() {
             Swal.fire({
@@ -86,7 +86,7 @@ if (isset($_POST['update-pegawai'])) {
         ";
     } else if ($_FILES['Gambar']['error'] === 4) {
         mysqli_query($conn, "UPDATE pegawai SET Nama = '$Nama', Gender = '$Gender', Tanggal = '$Tanggal', Alamat = '$Alamat', Telepon = '$Telepon', Foto = '$NoUpdate' WHERE IDPegawai = '$IDPegawai'");
-        echo "
+        $alert = "
         <script>
         setTimeout(function() {
             Swal.fire({
@@ -104,7 +104,7 @@ if (isset($_POST['update-pegawai'])) {
         ";
     } else {
         if (!in_array($GetExt, $ValidExtension)) {
-            echo "
+            $alert = "
             <script>
             setTimeout(function() {
                 Swal.fire({
@@ -119,7 +119,7 @@ if (isset($_POST['update-pegawai'])) {
             </script>
             ";
         } else if ($SetSize > 500000) {
-            echo "
+            $alert = "
             <script>
             setTimeout(function() {
                 Swal.fire({
@@ -168,7 +168,7 @@ if (isset($_POST['update-barang'])) {
     $Stok = htmlspecialchars(trim($_POST['Stok']));
 
     if (empty($Barang) || empty($Stok)) {
-        echo "
+        $alert = "
         <script>
         setTimeout(function() {
             Swal.fire({
@@ -183,7 +183,7 @@ if (isset($_POST['update-barang'])) {
         </script>
         ";
     } else if (!preg_match("/^[a-zA-Z ]*$/", $Barang)) {
-        echo "
+        $alert = "
         <script>
         setTimeout(function() {
             Swal.fire({
@@ -198,7 +198,7 @@ if (isset($_POST['update-barang'])) {
         </script>
         ";
     } else if (!preg_match("/^[0-9]*$/", $Stok)) {
-        echo "
+        $alert = "
         <script>
         setTimeout(function() {
             Swal.fire({
@@ -215,7 +215,7 @@ if (isset($_POST['update-barang'])) {
     } else {
         mysqli_query($conn, "UPDATE barang SET Barang = '$Barang', Stok = '$Stok' WHERE IDBarang = '$IDBarang'");
         mysqli_query($conn, "INSERT INTO riwayat (IDRiwayat, Barang, Kategori, Stok, Status, Time) VALUES ('$IDBarang', '$Barang', '$IDKategori', '$Stok', 'UPDATE', CURRENT_TIMESTAMP)");
-        echo "
+        $alert = "
         <script>
         setTimeout(function() {
             Swal.fire({
@@ -239,7 +239,7 @@ if (isset($_POST['update-akun'])) {
     $Password = htmlspecialchars(trim($_POST['Password']));
 
     if (empty($Password)) {
-        echo "
+        $alert = "
         <script>
         setTimeout(function() {
             Swal.fire({
@@ -255,7 +255,7 @@ if (isset($_POST['update-akun'])) {
         ";
     } else {
         mysqli_query($conn, "UPDATE login SET Password = '$Password' WHERE IDLogin = '$IDLogin'");
-        echo "
+        $alert = "
         <script>
         setTimeout(function() {
             Swal.fire({
@@ -295,7 +295,7 @@ if (isset($_POST['update-ulasan'])) {
     $UniqName .= $GetExt;
 
     if (empty($Nama) || empty($Ulasan)) {
-        echo "
+        $alert = "
         <script>
         setTimeout(function() {
             Swal.fire({
@@ -310,7 +310,7 @@ if (isset($_POST['update-ulasan'])) {
         </script>
         ";
     } else if (!preg_match("/^[a-zA-Z ]*$/", $Nama)) {
-        echo "
+        $alert = "
         <script>
         setTimeout(function() {
             Swal.fire({
@@ -326,7 +326,7 @@ if (isset($_POST['update-ulasan'])) {
         ";
     } else if ($_FILES['Foto']['error'] === 4) {
         mysqli_query($conn, "UPDATE ulasan SET Nama = '$Nama', Ulasan = '$Ulasan', Foto = '$NoUpdate' WHERE IDUlasan = '$IDUlasan'");
-        echo "
+        $alert = "
         <script>
         setTimeout(function() {
             Swal.fire({
@@ -344,7 +344,7 @@ if (isset($_POST['update-ulasan'])) {
         ";
     } else {
         if (!in_array($GetExt, $ValidExtension)) {
-            echo "
+            $alert = "
             <script>
             setTimeout(function() {
                 Swal.fire({
@@ -359,7 +359,7 @@ if (isset($_POST['update-ulasan'])) {
             </script>
             ";
         } else if ($Size > 500000) {
-            echo "
+            $alert = "
             <script>
             setTimeout(function() {
                 Swal.fire({
@@ -379,7 +379,7 @@ if (isset($_POST['update-ulasan'])) {
             if ($DataUlasan) {
                 move_uploaded_file($Resource, $Location . $UniqName);
                 mysqli_query($conn, "UPDATE ulasan SET Nama = '$Nama', Ulasan = '$Ulasan', Foto = '$UniqName' WHERE IDUlasan = '$IDUlasan'");
-                echo "
+                $alert = "
                 <script>
                 setTimeout(function() {
                     Swal.fire({
